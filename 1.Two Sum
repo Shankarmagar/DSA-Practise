@@ -1,4 +1,31 @@
-// Approach One Using a  HashMap which will stores the index and and value from the array 
+//Brute Approach
+//Applying two loop and if sum of two elements match the target then add the i and j in result array and return the result
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int [] p = new int [2];
+       for(int i = 0; i< nums.length-1;i++)
+       {
+           for(int j = i+1; j< nums.length; j++)
+           {
+               if(nums[i]+ nums[j]==target)
+               {
+                   p[0] = i;
+                   p[1] = j;
+               }
+           }
+       }
+       return p;
+    }
+}
+
+Time Complexity;- O(n^2) 
+Space Complexity;- O(1)
+
+
+
+// Optimal Solution
+// Approach Two Using a  HashMap which will stores the index and and value from the array 
 
 class Solution {
     public int[] twoSum(int[] nums, int target) {
