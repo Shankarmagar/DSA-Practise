@@ -1,2 +1,3 @@
 # DSA-Practise
-###Leetcode Problems
+### Leetcode Problems
+#### 1. Two Sum
