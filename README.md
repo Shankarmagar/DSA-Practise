@@ -1,3 +1,3 @@
 # DSA-Practise
 ### Leetcode Problems
-#### 1. Two Sum
+#### [x] 1. Two Sum
