@@ -50,6 +50,9 @@ class Solution {
 }
 
 //Time Complexity O(n* 4^n/n^1.5)
+//The maximum depth of the recursive call stack is bounded by the value of 'n'. For each level of recursion, we create lists (LeftSideBST and rightSideBST) to store the results, each of which can contain up to 2^n elements (in the worst case). As a result, the space complexity due to the recursion is O(n * 2^n).
+
+
 
 //with Memoization 
 /**
