@@ -1,0 +1,52 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<TreeNode> generateTrees(int n) {
+      return solve(1, n);
+    }
+    List<TreeNode> solve(int start, int end){
+        List<TreeNode> res = new ArrayList<> ();
+        if(start>end){
+            res.add(null);
+            return res;
+        }
+        if(start == end)
+        {
+            TreeNode root= new TreeNode (start);
+            res.add(root);
+            return res;
+        }
+        for(int i = start; i<=end; i++)
+        {
+            List<TreeNode> LeftSideBST = solve(start, i-1);
+            List<TreeNode> rightSideBST = solve(i+1,end);
+            for( TreeNode l: LeftSideBST)
+            {
+                for(TreeNode r: rightSideBST)
+                {
+                   TreeNode p = new TreeNode(i,l, r);
+                    res.add(p);
+                    
+                }
+            }
+        }
+        return res;
+        
+    }
+    
+}
+
+//Time Complexity O(n* 4^n/n^1.5)
