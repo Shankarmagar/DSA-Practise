@@ -1,0 +1,50 @@
+class Solution {
+    public List<List<Integer>> minimumAbsDifference(int[] arr) {
+       List<List<Integer>> res = new ArrayList<> ();
+       Arrays.sort(arr);
+       int length = arr.length;
+       int start = 0;
+       int end = arr[length-1]-arr[0];
+
+       while(start<=end)
+       {
+           int mid = start + (end-start)/2;
+           System.out.println(mid);
+           if(ExtractingRes(mid, arr,res)){
+               end = mid-1;
+           }
+           else{
+               start = mid+1;
+           }
+       }
+       return res;
+
+    }
+    boolean ExtractingRes(int mid, int[]arr, List<List<Integer>>res)
+    {
+        int i =0;
+        int length = arr.length-1;
+        List<List<Integer>> result = new ArrayList<> ();
+        while(i<length)
+        {
+            if(Math.abs(arr[i]-arr[i+1])<=mid)
+            {
+                List<Integer> OneList = new ArrayList<>();
+                OneList.add(arr[i]);
+                OneList.add(arr[i+1]);
+              result.add(OneList);
+            }
+            i++;
+        }
+
+        if(!result.isEmpty())
+        {
+            res.clear();
+            res.addAll(result);
+        }
+        else{
+            return false;
+        }
+        return true;
+    }
+}
