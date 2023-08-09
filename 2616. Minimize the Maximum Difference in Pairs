@@ -1,0 +1,49 @@
+class Solution {
+    public int minimizeMax(int[] nums, int p) {
+        int result = -1; //to store result
+        int length = nums.length;
+        //we are sorting out first
+        Arrays.sort(nums);
+
+        //we are applying binary search in answer as it is the min-max type questions
+        int start = 0;
+        int end = nums[length-1]-nums[0]; //Our maximum difference could be Absolute value of (nums[0]-nums[length-1])
+
+        while(start<=end)
+        {
+          int mid = start + (end-start)/2;
+          if(isValid(nums,mid,p))
+          {
+              result = mid;
+              end = mid-1;
+          }
+          else
+          {
+              start = mid+1;
+          }
+        }
+        return result;
+
+    }
+    boolean isValid(int[] nums, int mid, int p)
+    {
+        int counter = 0;
+        int length = nums.length;
+        int i =0;
+        while(i<length-1)
+        {
+            if(Math.abs(nums[i]-nums[i+1])<=mid)
+            {
+                i+=2;
+                counter++;
+            }
+            else{
+                i++;
+            }
+
+        }
+        return counter>=p;
+    }
+
+
+}
