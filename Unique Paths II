@@ -1,0 +1,30 @@
+class Solution {
+  Integer Memoization[][] = new Integer[101][101];
+    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+      return solve(obstacleGrid, 0, 0);  
+    }
+    int solve(int[][] obstacleGrid, int i, int j)
+    {
+    int m = obstacleGrid.length;
+    int n = obstacleGrid[0].length;
+       
+    if(i>=m || j >=n || obstacleGrid[i][j]==1)
+    {
+      return 0;
+    }
+    if(i==m-1 && j==n-1)
+    {
+      return 1;
+    }
+    if(Memoization[i][j] !=null)
+    {
+      return Memoization[i][j];
+    }
+    int down = solve(obstacleGrid, i+1, j);
+    int right = solve(obstacleGrid, i, j+1);
+
+    return Memoization[i][j] = down+right;
+
+    }
+}
+//Time complexity O(n*m)
