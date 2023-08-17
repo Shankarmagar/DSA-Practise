@@ -1,0 +1,50 @@
+class Solution {
+    int rows;
+    int columns;
+    Queue <Pair<Integer,Integer>> Myque = new LinkedList<> ();
+    int [][] direction = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+    public int[][] updateMatrix(int[][] mat) {
+        rows = mat.length;
+        columns= mat[0].length;
+        Integer [][] res = new Integer [rows][columns];
+
+        for(int i =0; i<rows; i++)
+        {
+            for(int j=0; j<columns; j++)
+            {
+                if(mat[i][j]==0)
+                {
+                res[i][j] = 0;
+                 Myque.offer(new Pair<>(i,j));
+                }
+            }
+        }
+
+        while(!Myque.isEmpty())
+        {
+            Pair<Integer,Integer> p = Myque.poll();
+            int x = p.getKey();
+            int y = p.getValue();
+           for (int[] dir : direction) {
+                int newX = x + dir[0];
+                int newY = y + dir[1];
+
+                if (newX >= 0 && newX < rows && newY >= 0 && newY < columns && res[newX][newY] == null) {
+                    res[newX][newY] = res[x][y] + 1;
+                    Myque.offer(new Pair<>(newX, newY));
+                }
+           }
+        }
+        int[][] result = new int[rows][columns];
+        for(int i=0; i< rows; i++)
+        {
+            for(int j=0; j<columns; j++)
+            {
+                result[i][j] = res[i][j] != null ? res[i][j] : 0;
+            }
+        }
+      return result;
+
+        
+    }
+}
