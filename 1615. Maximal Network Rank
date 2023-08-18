@@ -1,0 +1,35 @@
+class Solution {
+    public int maximalNetworkRank(int n, int[][] roads) {
+        HashMap <Integer, HashSet<Integer>> mapping = new HashMap<> ();
+        for(int []road: roads)
+        {
+           int u = road[0];
+           int v = road[1];
+
+           mapping.computeIfAbsent(u, k-> new HashSet<>()).add(v);
+           mapping.computeIfAbsent(v, k-> new HashSet<>()).add(u);
+        }
+        int maxRank =0;
+        for(int i=0; i<n;i++)
+        {
+          
+            for(int j=i+1; j<n;j++)
+            {
+                int i_rank = mapping.getOrDefault(i, new HashSet<>()).size();
+                int j_rank = mapping.getOrDefault(j, new HashSet<>()).size();
+
+                int rank = i_rank + j_rank;
+
+                if(mapping.containsKey(i) && mapping.get(i).contains(j))
+                {
+                    rank-=1;
+                }
+                maxRank = Math.max(maxRank, rank);
+            }
+            
+        }
+        return maxRank;
+    }
+}
+
+//Time complexity O(V^2) we are going over each vertices.
