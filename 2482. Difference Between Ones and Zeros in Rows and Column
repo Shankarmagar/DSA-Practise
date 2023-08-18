@@ -1,0 +1,51 @@
+class Solution {
+    public int[][] onesMinusZeros(int[][] grid) {
+        int [] rows = new int[grid.length];
+        int [] cols = new int [grid[0].length];
+
+       for(int i=0; i<grid.length;i++)
+       {
+           int row = 0;
+         
+           for(int j=0; j<grid[0].length;j++)
+           {
+            if(grid[i][j]==1)
+            {
+                row+=1;
+            }
+            else
+            {
+                row-=1;
+            }
+           }
+           rows[i] = row;
+       }
+       for(int i=0; i<grid[0].length;i++)
+       {
+           int col = 0;
+           for(int j=0; j<grid.length;j++)
+           {
+              if(grid[j][i]==1)
+              {
+                  col+=1;
+              }
+              else{
+                  col-=1;
+              }
+           }
+           cols[i]=col;
+       }
+       int [][] result = new int [grid.length][grid[0].length];
+       for(int i=0; i<grid.length; i++)
+       {
+           for(int j=0; j<grid[0].length;j++)
+           {
+               result[i][j] = rows[i]+cols[j];
+           }
+       }
+       return result;
+    }
+}
+
+//Time Complexity O(m*n)
+//pace complexity O(m*n)
